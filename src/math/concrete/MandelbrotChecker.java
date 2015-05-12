@@ -13,9 +13,20 @@ public class MandelbrotChecker {
 	}
 	
 	public int getStepsToInfinity(Complex number){
-		for (int i = 0; i < MandelbrotChecker.NUMBER_OF_STEPS; i++) {
+		Complex zero = new Complex(0.0, 0.0);
+		Complex previous = zero;
+		Complex current = null;
+		
+		for (int stepsToInfinity = 1; stepsToInfinity <= MandelbrotChecker.NUMBER_OF_STEPS; stepsToInfinity++) {
+			current = getNextMandelbrotNumber(previous, number);
 			
+			if (current.isInfinite() || current.isNaN()) {
+				return stepsToInfinity;
+			}
+			
+			previous = current;			
 		}
+		
 		return 0;
 	}
 }
