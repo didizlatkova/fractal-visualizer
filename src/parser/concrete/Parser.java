@@ -20,7 +20,7 @@ public class Parser {
 		parameterOptions.add(Size.parameterOptions);
 	}
 
-	public Options parse() {
+	public Options getOptions() {
 		Options options = new Options();
 
 		for (ParameterOption parameterOption : parameterOptions) {

@@ -32,7 +32,7 @@ public class Size {
 
 	static {
 		Size.parameterOptions = new ParameterOption(
-				new String[] { "-s", "-size" }, true,
+				new String[] { "s", "size" }, true,
 				"size of the generated image");
 	}
 

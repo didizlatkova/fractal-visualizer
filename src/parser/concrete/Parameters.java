@@ -4,7 +4,7 @@ import org.apache.commons.cli.CommandLine;
 
 import parameters.concrete.*;
 
-public class Creator {
+public class Parameters {
 	
 	private CommandLine commandLine;
 
@@ -15,20 +15,22 @@ public class Creator {
 	}
 
 	private void setSize() {
+		String widthAndHeight = null;
 		for (String optionName : Size.parameterOptions.optionNames) {
 			if (this.commandLine.hasOption(optionName)) {
-				String widthAndHeight = this.commandLine.getOptionValue(optionName);
-				this.size = Size.getSize(widthAndHeight);
+				widthAndHeight = this.commandLine.getOptionValue(optionName);
 				break;
 			}
 		}
+		
+		this.size = Size.getSize(widthAndHeight);
 	}
 
-	public Creator(CommandLine commandLine) {
+	public Parameters(CommandLine commandLine) {
 		this.commandLine = commandLine;
 	}
 
-	public void createParameters() {
+	public void create() {
 		this.setSize();
 	}
 	
