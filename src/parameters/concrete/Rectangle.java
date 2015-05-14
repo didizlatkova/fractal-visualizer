@@ -4,29 +4,29 @@ import parameters.common.*;
 
 public class Rectangle {
 	
-	private static final Coordinate DEFAULT_A = new Coordinate(-2, 2);
-	private static final Coordinate DEFAULT_B = new Coordinate(-2, 2);
+	private static final Limit DEFAULT_A = new Limit(-2, 2);
+	private static final Limit DEFAULT_B = new Limit(-2, 2);
 	private static final String INVALID_RECTANGLE_ERROR_MESSAGE = "The rectangle parameter is invalid.";
 
 	public static ParameterOption parameterOptions;
 
-	private Coordinate a;
+	private Limit a;
 	
-	private Coordinate b;
+	private Limit b;
 
-	public Coordinate getA() {
+	public Limit getA() {
 		return a;
 	}
 
-	public void setA(Coordinate a) {
+	public void setA(Limit a) {
 		this.a = a;
 	}
 
-	public Coordinate getB() {
+	public Limit getB() {
 		return b;
 	}
 
-	public void setB(Coordinate b) {
+	public void setB(Limit b) {
 		this.b = b;
 	}
 	
@@ -36,7 +36,7 @@ public class Rectangle {
 				"rectangle part of the complex field");
 	}
 	
-	private Rectangle(Coordinate a, Coordinate b) {
+	private Rectangle(Limit a, Limit b) {
 		this.setA(a);
 		this.setB(b);
 	}
@@ -55,7 +55,7 @@ public class Rectangle {
 				int bX = Integer.parseInt(rectangleCoordinatesArray[2]);
 				int bY = Integer.parseInt(rectangleCoordinatesArray[3]);
 
-				return new Rectangle(new Coordinate(aX, aY), new Coordinate(bX, bY));
+				return new Rectangle(new Limit(aX, aY), new Limit(bX, bY));
 			} catch (NumberFormatException e) {
 				// size is invalid
 				throw new IllegalArgumentException(
