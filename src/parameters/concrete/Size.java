@@ -55,7 +55,6 @@ public class Size {
 
 				return new Size(width, height);
 			} catch (NumberFormatException e) {
-				// size is invalid
 				throw new IllegalArgumentException(
 						Size.INVALID_SIZE_ERROR_MESSAGE);
 			}

@@ -39,7 +39,6 @@ public class Tasks {
 
 			return new Tasks(max);
 		} catch (NumberFormatException e) {
-			// size is invalid
 			throw new IllegalArgumentException(
 					Tasks.INVALID_TASKS_ERROR_MESSAGE);
 		}

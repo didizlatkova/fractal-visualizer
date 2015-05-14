@@ -57,7 +57,6 @@ public class Rectangle {
 
 				return new Rectangle(new Limit(aX, aY), new Limit(bX, bY));
 			} catch (NumberFormatException e) {
-				// size is invalid
 				throw new IllegalArgumentException(
 						Rectangle.INVALID_RECTANGLE_ERROR_MESSAGE);
 			}
