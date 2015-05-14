@@ -2,15 +2,11 @@ package main.concrete;
 
 import logging.abstracts.Logger;
 import logging.concrete.MessageLogger;
+import math.concrete.*;
 import image.abstracts.Painter;
-import image.concrete.BlackAndWhitePainter;
-import image.concrete.ColorPainter;
+import image.concrete.*;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.ParseException;
-import org.apache.commons.cli.Options;
+import org.apache.commons.cli.*;
 
 import parser.concrete.Parameters;
 import parser.concrete.Parser;
@@ -43,8 +39,9 @@ public class Main {
 		//Painter painter = new ColorPainter(params.getSize());
 		Logger logger = new MessageLogger(true);
 		Generator fractalGenerator = new Generator(logger);
-			
-		fractalGenerator.generateFractal(painter, params.getSize(), params.getComplexField());
+		MandelbrotChecker checker = new MandelbrotChecker(new FormulaExample());
+		
+		fractalGenerator.generateFractal(painter, checker, params.getSize(), params.getComplexField());
 		painter.paintBorder(params.getSize(), 2, 2);
 		
 		painter.paintImage("test.png", "PNG");

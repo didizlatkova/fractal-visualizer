@@ -3,6 +3,7 @@ package main.concrete;
 import org.apache.commons.math3.complex.Complex;
 
 import logging.abstracts.Logger;
+import math.concrete.Formula15;
 import math.concrete.MandelbrotChecker;
 import parameters.concrete.*;
 import image.abstracts.Painter;
@@ -14,11 +15,8 @@ public class Generator {
 		this.logger = logger;
 	}
 
-	public void generateFractal(Painter painter, Size imageSize,
+	public void generateFractal(Painter painter, MandelbrotChecker checker, Size imageSize,
 			Rectangle complexField) {
-
-		MandelbrotChecker checker = new MandelbrotChecker();
-
 		double widthStep = 1 / (double) imageSize.getWidth();
 
 		for (int imageX = 0; imageX < imageSize.getWidth(); imageX++) {
