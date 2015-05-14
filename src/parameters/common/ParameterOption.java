@@ -1,4 +1,4 @@
-package parameters.abstracts;
+package parameters.common;
 
 public class ParameterOption {
 

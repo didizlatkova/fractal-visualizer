@@ -3,8 +3,8 @@ package parser.concrete;
 import java.util.ArrayList;
 import java.util.List;
 
-import parameters.abstracts.*;
-import parameters.concrete.Size;
+import parameters.common.*;
+import parameters.concrete.*;
 
 import org.apache.commons.cli.Options;
 
@@ -18,6 +18,10 @@ public class Parser {
 
 	public void buildParameterOptions() {
 		parameterOptions.add(Size.parameterOptions);
+		parameterOptions.add(Rectangle.parameterOptions);
+		parameterOptions.add(Tasks.parameterOptions);
+		parameterOptions.add(GeneratedImage.parameterOptions);
+		parameterOptions.add(WorkingMode.parameterOptions);
 	}
 
 	public Options getOptions() {

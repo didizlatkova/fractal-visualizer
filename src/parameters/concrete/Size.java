@@ -1,6 +1,6 @@
 package parameters.concrete;
 
-import parameters.abstracts.*;
+import parameters.common.ParameterOption;;
 
 public class Size {
 	
@@ -44,7 +44,7 @@ public class Size {
 	public static Size getSize(String widthAndHeight) {
 		// expected format is 640x480
 		if (widthAndHeight == null) {
-			return new Size(Size.DEFAULT_HEIGHT, Size.DEFAULT_WIDTH);
+			return new Size(Size.DEFAULT_WIDTH, Size.DEFAULT_HEIGHT);
 		}
 
 		String[] widthAndHeightArray = widthAndHeight.split("x");
@@ -55,7 +55,6 @@ public class Size {
 
 				return new Size(width, height);
 			} catch (NumberFormatException e) {
-				// size is invalid
 				throw new IllegalArgumentException(
 						Size.INVALID_SIZE_ERROR_MESSAGE);
 			}

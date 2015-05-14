@@ -1,5 +1,7 @@
 package math.concrete;
 
+import math.abstracts.Formula;
+
 import org.apache.commons.math3.complex.Complex;
 
 public class MandelbrotChecker {
@@ -7,9 +9,22 @@ public class MandelbrotChecker {
 	// TODO: check if this is a constant value or depends on width/height
 	private static final int NUMBER_OF_STEPS = 640;
 	
-	private Complex getNextMandelbrotNumber(Complex previous, Complex current){		
-		//formula is: Z^2 + C ∗ е^(−Z)
-		return previous.multiply(previous).add(current.multiply(Math.pow(Math.E, previous.negate().getReal())));
+	private Formula formula;
+	
+	public Formula getFormula() {
+		return formula;
+	}
+
+	public void setFormula(Formula formula) {
+		this.formula = formula;
+	}
+	
+	public MandelbrotChecker(Formula formula){
+		this.setFormula(formula);
+	}
+
+	private Complex getNextMandelbrotNumber(Complex previous, Complex current){
+		return formula.compute(previous, current);
 	}
 	
 	public int getStepsToInfinity(Complex number){
@@ -19,7 +34,6 @@ public class MandelbrotChecker {
 		
 		for (int stepsToInfinity = 1; stepsToInfinity <= MandelbrotChecker.NUMBER_OF_STEPS; stepsToInfinity++) {
 			current = getNextMandelbrotNumber(previous, number);
-			
 			if (current.isInfinite() || current.isNaN()) {
 				return stepsToInfinity;
 			}
