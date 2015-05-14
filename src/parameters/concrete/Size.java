@@ -1,6 +1,6 @@
 package parameters.concrete;
 
-import parameters.common.*;
+import parameters.common.ParameterOption;;
 
 public class Size {
 	
