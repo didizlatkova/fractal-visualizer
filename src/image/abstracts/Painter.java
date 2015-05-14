@@ -16,13 +16,21 @@ public abstract class Painter {
 
 	private Graphics2D graphics;
 
+	public BufferedImage getImage() {
+		return image;
+	}
+
+	private void setImage(BufferedImage image) {
+		this.image = image;
+	}
+
 	public abstract void paintPixel(int stepsToInfinity, BufferedImage image,
 			int x, int y);
 
 	public Painter(Size imageSize) {
-		this.image = new BufferedImage(imageSize.getWidth(), imageSize.getHeight(),
-				BufferedImage.TYPE_3BYTE_BGR);
-		this.graphics = this.image.createGraphics();
+		this.setImage(new BufferedImage(imageSize.getWidth(), imageSize.getHeight(),
+				BufferedImage.TYPE_3BYTE_BGR));
+		this.graphics = this.getImage().createGraphics();
 		this.graphics.setColor(Color.WHITE);
 		this.graphics.fillRect(0, 0, imageSize.getWidth(), imageSize.getHeight());
 	}
@@ -34,7 +42,7 @@ public abstract class Painter {
 
 	public void paintImage(String fileName, String fileType) {
 		try {
-			ImageIO.write(this.image, "PNG", new File(fileName));
+			ImageIO.write(this.getImage(), "PNG", new File(fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

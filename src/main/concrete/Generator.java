@@ -10,7 +10,7 @@ import image.abstracts.Painter;
 
 public class Generator {
 
-	public void generateFractal(Painter painter, BufferedImage image, Size imageSize,
+	public void generateFractal(Painter painter, Size imageSize,
 			Rectangle complexField) {
 		
 		MandelbrotChecker checker = new MandelbrotChecker();
@@ -28,7 +28,7 @@ public class Generator {
 						* heightStep;
 				
 				int stepsToInfinity = checker.getStepsToInfinity(new Complex(fieldX, fieldY));
-				painter.paintPixel(stepsToInfinity, image, imageX, imageY);
+				painter.paintPixel(stepsToInfinity, painter.getImage(), imageX, imageY);
 				
 				imageY += 1;
 			}

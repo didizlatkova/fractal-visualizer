@@ -9,6 +9,8 @@ public class Parameters {
 	private CommandLine commandLine;
 
 	private Size size;
+	
+	private Rectangle complexField;
 
 	public Size getSize() {
 		return size;
@@ -26,12 +28,29 @@ public class Parameters {
 		this.size = Size.getSize(widthAndHeight);
 	}
 
+	public Rectangle getComplexField() {
+		return complexField;
+	}
+
+	public void setComplexField() {
+		String rectangleCoordinates = null;
+		for (String optionName : Rectangle.parameterOptions.optionNames) {
+			if (this.commandLine.hasOption(optionName)) {
+				rectangleCoordinates = this.commandLine.getOptionValue(optionName);
+				break;
+			}
+		}
+		
+		this.complexField = Rectangle.getRectangle(rectangleCoordinates);
+	}
+
 	public Parameters(CommandLine commandLine) {
 		this.commandLine = commandLine;
 	}
 
 	public void create() {
 		this.setSize();
+		this.setComplexField();
 	}
 	
 }

@@ -31,7 +31,7 @@ public class Rectangle {
 	}
 	
 	static {
-		Size.parameterOptions = new ParameterOption(
+		Rectangle.parameterOptions = new ParameterOption(
 				new String[] { "r", "rect" }, true,
 				"rectangle part of the complex field");
 	}
