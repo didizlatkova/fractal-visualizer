@@ -9,7 +9,8 @@ public class MandelbrotChecker {
 	
 	private Complex getNextMandelbrotNumber(Complex previous, Complex current){		
 		//formula is: Z^2 + C ∗ е^(−Z)
-		return previous.multiply(previous).add(current.multiply(Math.pow(Math.E, previous.negate().getReal())));
+		//return previous.multiply(previous).add(current.multiply(Math.pow(Math.E, previous.negate().getReal())));
+		return previous.multiply(previous).add(current);
 	}
 	
 	public int getStepsToInfinity(Complex number){

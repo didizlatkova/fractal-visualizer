@@ -1,5 +1,7 @@
 package main.concrete;
 
+import logging.abstracts.Logger;
+import logging.concrete.MessageLogger;
 import image.abstracts.Painter;
 import image.concrete.BlackAndWhitePainter;
 
@@ -36,10 +38,15 @@ public class Main {
 		System.out.println(params.getComplexField().getA().min);
 		System.out.println(params.getComplexField().getA().max);
 		
-		Painter painter = new BlackAndWhitePainter(params.getSize());		
-		Generator fractalGenerator = new Generator();
-		
+		Painter painter = new BlackAndWhitePainter(params.getSize());
+		Logger logger = new MessageLogger(true);
+		Generator fractalGenerator = new Generator(logger);
+			
 		fractalGenerator.generateFractal(painter, params.getSize(), params.getComplexField());
+		painter.paintBorder(params.getSize(), 2, 2);
+		
+		painter.paintImage("test.png", "PNG");
+		logger.log("Image painted!");
 	}
 
 }

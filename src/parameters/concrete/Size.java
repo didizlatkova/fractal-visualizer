@@ -44,7 +44,7 @@ public class Size {
 	public static Size getSize(String widthAndHeight) {
 		// expected format is 640x480
 		if (widthAndHeight == null) {
-			return new Size(Size.DEFAULT_HEIGHT, Size.DEFAULT_WIDTH);
+			return new Size(Size.DEFAULT_WIDTH, Size.DEFAULT_HEIGHT);
 		}
 
 		String[] widthAndHeightArray = widthAndHeight.split("x");
