@@ -2,11 +2,11 @@ package parameters.common;
 
 public class Limit {
 
-	public int min;
+	public double min;
 	
-	public int max;
+	public double max;
 	
-	public Limit(int min, int max){
+	public Limit(double min, double max){
 		this.min = min;
 		this.max = max;
 	}

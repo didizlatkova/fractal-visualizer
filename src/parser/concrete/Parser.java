@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import parameters.common.*;
-import parameters.concrete.Size;
+import parameters.concrete.*;
 
 import org.apache.commons.cli.Options;
 
@@ -18,6 +18,7 @@ public class Parser {
 
 	public void buildParameterOptions() {
 		parameterOptions.add(Size.parameterOptions);
+		parameterOptions.add(Rectangle.parameterOptions);
 	}
 
 	public Options getOptions() {

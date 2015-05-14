@@ -50,10 +50,10 @@ public class Rectangle {
 		String[] rectangleCoordinatesArray = rectangleCoordinates.split(":");
 		if (rectangleCoordinatesArray.length == 4) {
 			try {
-				int aX = Integer.parseInt(rectangleCoordinatesArray[0]);
-				int aY = Integer.parseInt(rectangleCoordinatesArray[1]);
-				int bX = Integer.parseInt(rectangleCoordinatesArray[2]);
-				int bY = Integer.parseInt(rectangleCoordinatesArray[3]);
+				double aX = Double.parseDouble(rectangleCoordinatesArray[0]);
+				double aY = Double.parseDouble(rectangleCoordinatesArray[1]);
+				double bX = Double.parseDouble(rectangleCoordinatesArray[2]);
+				double bY = Double.parseDouble(rectangleCoordinatesArray[3]);
 
 				return new Rectangle(new Limit(aX, aY), new Limit(bX, bY));
 			} catch (NumberFormatException e) {
