@@ -13,6 +13,8 @@ public class Parameters {
 	private Rectangle complexField;
 	
 	private Tasks tasks;
+	
+	private GeneratedImage generatedImage;
 
 	public Size getSize() {
 		return size;
@@ -62,6 +64,22 @@ public class Parameters {
 		this.tasks = Tasks.getTasks(maxString);
 	}
 
+	public GeneratedImage getGeneratedImage() {
+		return generatedImage;
+	}
+
+	public void setGeneratedImage() {
+		String name = null;
+		for (String optionName : GeneratedImage.parameterOptions.optionNames) {
+			if (this.commandLine.hasOption(optionName)) {
+				name = this.commandLine.getOptionValue(optionName);
+				break;
+			}
+		}		
+		
+		this.generatedImage = GeneratedImage.getGeneratedImage(name);
+	}
+
 	public Parameters(CommandLine commandLine) {
 		this.commandLine = commandLine;
 	}
@@ -70,6 +88,7 @@ public class Parameters {
 		this.setSize();
 		this.setComplexField();
 		this.setTasks();
+		this.setGeneratedImage();
 	}
 	
 }

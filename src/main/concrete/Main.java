@@ -47,7 +47,7 @@ public class Main {
 		fractalGenerator.generateFractal(painter, checker, params.getSize(), params.getComplexField());
 		painter.paintBorder(params.getSize(), 2, 2);
 		
-		painter.paintImage("test.png", "PNG");
+		painter.paintImage(params.getGeneratedImage().getName(), "PNG");
 		logger.log("Image painted!");
 	}
 

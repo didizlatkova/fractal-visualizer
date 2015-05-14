@@ -20,6 +20,7 @@ public class Parser {
 		parameterOptions.add(Size.parameterOptions);
 		parameterOptions.add(Rectangle.parameterOptions);
 		parameterOptions.add(Tasks.parameterOptions);
+		parameterOptions.add(GeneratedImage.parameterOptions);
 	}
 
 	public Options getOptions() {
