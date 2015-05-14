@@ -19,6 +19,7 @@ public class Parser {
 	public void buildParameterOptions() {
 		parameterOptions.add(Size.parameterOptions);
 		parameterOptions.add(Rectangle.parameterOptions);
+		parameterOptions.add(Tasks.parameterOptions);
 	}
 
 	public Options getOptions() {

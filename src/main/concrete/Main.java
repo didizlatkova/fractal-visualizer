@@ -36,6 +36,7 @@ public class Main {
 		System.out.println(params.getComplexField().getA().max);
 		System.out.println(params.getComplexField().getB().min);
 		System.out.println(params.getComplexField().getB().max);
+		System.out.println(params.getTasks().getMax());
 		
 		Painter painter = new BlackAndWhitePainter(params.getSize());
 		//Painter painter = new ColorPainter(params.getSize());

@@ -11,6 +11,8 @@ public class Parameters {
 	private Size size;
 	
 	private Rectangle complexField;
+	
+	private Tasks tasks;
 
 	public Size getSize() {
 		return size;
@@ -44,6 +46,22 @@ public class Parameters {
 		this.complexField = Rectangle.getRectangle(rectangleCoordinates);
 	}
 
+	public Tasks getTasks() {
+		return tasks;
+	}
+
+	public void setTasks() {
+		String maxString = null;
+		for (String optionName : Tasks.parameterOptions.optionNames) {
+			if (this.commandLine.hasOption(optionName)) {
+				maxString = this.commandLine.getOptionValue(optionName);
+				break;
+			}
+		}
+		
+		this.tasks = Tasks.getTasks(maxString);
+	}
+
 	public Parameters(CommandLine commandLine) {
 		this.commandLine = commandLine;
 	}
@@ -51,6 +69,7 @@ public class Parameters {
 	public void create() {
 		this.setSize();
 		this.setComplexField();
+		this.setTasks();
 	}
 	
 }
