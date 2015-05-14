@@ -42,6 +42,8 @@ public class Generator {
 
 //				logger.log(String.format("(%.9f, %.9f) to (%3d, %3d) => %d\n",
 //						fieldX, fieldY, imageX, imageY, stepsToInfinity));
+				
+				//logger.log(Integer.toString(stepsToInfinity));
 
 				painter.paintPixel(stepsToInfinity, painter.getImage(), imageX,
 						imageY);

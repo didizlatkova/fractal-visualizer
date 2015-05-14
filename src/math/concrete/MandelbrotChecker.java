@@ -20,7 +20,6 @@ public class MandelbrotChecker {
 		
 		for (int stepsToInfinity = 1; stepsToInfinity <= MandelbrotChecker.NUMBER_OF_STEPS; stepsToInfinity++) {
 			current = getNextMandelbrotNumber(previous, number);
-			
 			if (current.isInfinite() || current.isNaN()) {
 				return stepsToInfinity;
 			}

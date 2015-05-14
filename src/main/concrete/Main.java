@@ -4,6 +4,7 @@ import logging.abstracts.Logger;
 import logging.concrete.MessageLogger;
 import image.abstracts.Painter;
 import image.concrete.BlackAndWhitePainter;
+import image.concrete.ColorPainter;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -39,6 +40,7 @@ public class Main {
 		System.out.println(params.getComplexField().getA().max);
 		
 		Painter painter = new BlackAndWhitePainter(params.getSize());
+		//Painter painter = new ColorPainter(params.getSize());
 		Logger logger = new MessageLogger(true);
 		Generator fractalGenerator = new Generator(logger);
 			
