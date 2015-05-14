@@ -3,7 +3,6 @@ package main.concrete;
 import org.apache.commons.math3.complex.Complex;
 
 import logging.abstracts.Logger;
-import math.concrete.Formula15;
 import math.concrete.MandelbrotChecker;
 import parameters.concrete.*;
 import image.abstracts.Painter;
@@ -38,8 +37,8 @@ public class Generator {
 				int stepsToInfinity = checker.getStepsToInfinity(new Complex(
 						fieldX, fieldY));
 
-//				logger.log(String.format("(%.9f, %.9f) to (%3d, %3d) => %d\n",
-//						fieldX, fieldY, imageX, imageY, stepsToInfinity));
+				logger.log(String.format("(%.9f, %.9f) to (%3d, %3d) => %d\n",
+						fieldX, fieldY, imageX, imageY, stepsToInfinity));
 				
 				//logger.log(Integer.toString(stepsToInfinity));
 

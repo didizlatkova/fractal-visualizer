@@ -14,6 +14,8 @@ public class Parameters {
 	
 	private Tasks tasks;
 	
+	private WorkingMode workingMode;
+	
 	private GeneratedImage generatedImage;
 
 	public Size getSize() {
@@ -36,7 +38,7 @@ public class Parameters {
 		return complexField;
 	}
 
-	public void setComplexField() {
+	private void setComplexField() {
 		String rectangleCoordinates = null;
 		for (String optionName : Rectangle.parameterOptions.optionNames) {
 			if (this.commandLine.hasOption(optionName)) {
@@ -52,7 +54,7 @@ public class Parameters {
 		return tasks;
 	}
 
-	public void setTasks() {
+	private void setTasks() {
 		String maxString = null;
 		for (String optionName : Tasks.parameterOptions.optionNames) {
 			if (this.commandLine.hasOption(optionName)) {
@@ -68,7 +70,7 @@ public class Parameters {
 		return generatedImage;
 	}
 
-	public void setGeneratedImage() {
+	private void setGeneratedImage() {
 		String name = null;
 		for (String optionName : GeneratedImage.parameterOptions.optionNames) {
 			if (this.commandLine.hasOption(optionName)) {
@@ -80,6 +82,22 @@ public class Parameters {
 		this.generatedImage = GeneratedImage.getGeneratedImage(name);
 	}
 
+	public WorkingMode getWorkingMode() {
+		return workingMode;
+	}
+
+	private void setWorkingMode() {
+		boolean isQuiet = false;
+		for (String optionName : WorkingMode.parameterOptions.optionNames) {
+			if (this.commandLine.hasOption(optionName)) {
+				isQuiet = true;
+				break;
+			}
+		}	
+		
+		this.workingMode = new WorkingMode(isQuiet);
+	}
+
 	public Parameters(CommandLine commandLine) {
 		this.commandLine = commandLine;
 	}
@@ -89,6 +107,7 @@ public class Parameters {
 		this.setComplexField();
 		this.setTasks();
 		this.setGeneratedImage();
+		this.setWorkingMode();
 	}
 	
 }

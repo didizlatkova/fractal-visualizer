@@ -18,7 +18,7 @@ public class Rectangle {
 		return a;
 	}
 
-	public void setA(Limit a) {
+	private void setA(Limit a) {
 		this.a = a;
 	}
 
@@ -26,7 +26,7 @@ public class Rectangle {
 		return b;
 	}
 
-	public void setB(Limit b) {
+	private void setB(Limit b) {
 		this.b = b;
 	}
 	

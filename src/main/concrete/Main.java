@@ -37,10 +37,11 @@ public class Main {
 		System.out.println(params.getComplexField().getB().min);
 		System.out.println(params.getComplexField().getB().max);
 		System.out.println(params.getTasks().getMax());
+		System.out.println(params.getWorkingMode().isQuiet());
 		
 		Painter painter = new BlackAndWhitePainter(params.getSize());
 		//Painter painter = new ColorPainter(params.getSize());
-		Logger logger = new MessageLogger(true);
+		Logger logger = new MessageLogger(!params.getWorkingMode().isQuiet());
 		Generator fractalGenerator = new Generator(logger);
 		MandelbrotChecker checker = new MandelbrotChecker(new FormulaExample());
 		
@@ -48,7 +49,7 @@ public class Main {
 		painter.paintBorder(params.getSize(), 2, 2);
 		
 		painter.paintImage(params.getGeneratedImage().getName(), "PNG");
-		logger.log("Image painted!");
+		logger.logAlways("Image painted!");
 	}
 
 }

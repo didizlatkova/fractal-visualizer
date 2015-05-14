@@ -15,7 +15,7 @@ public class Tasks {
 		return max;
 	}
 
-	public void setMax(int max) {
+	private void setMax(int max) {
 		this.max = max;
 	}
 

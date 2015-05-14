@@ -15,4 +15,9 @@ public class MessageLogger implements Logger {
 			System.out.println(message);
 		}
 	}
+
+	@Override
+	public void logAlways(String message) {
+		System.out.println(message);		
+	}
 }
