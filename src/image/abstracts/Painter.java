@@ -19,17 +19,17 @@ public abstract class Painter {
 	public abstract void paintPixel(int stepsToInfinity, BufferedImage image,
 			int x, int y);
 
-	public Painter(Size size) {
-		this.image = new BufferedImage(size.getWidth(), size.getHeight(),
+	public Painter(Size imageSize) {
+		this.image = new BufferedImage(imageSize.getWidth(), imageSize.getHeight(),
 				BufferedImage.TYPE_3BYTE_BGR);
 		this.graphics = this.image.createGraphics();
 		this.graphics.setColor(Color.WHITE);
-		this.graphics.fillRect(0, 0, size.getWidth(), size.getHeight());
+		this.graphics.fillRect(0, 0, imageSize.getWidth(), imageSize.getHeight());
 	}
 
-	public void createBorder(int width, int height) {
+	public void paintBorder(Size imageSize, int borderWidth, int borderHeight) {
 		this.graphics.setColor(Color.GRAY);
-		this.graphics.drawRect(0, 0, width, height);
+		this.graphics.drawRect(0, 0, imageSize.getWidth() - borderWidth, imageSize.getHeight() - borderHeight);
 	}
 
 	public void paintImage(String fileName, String fileType) {

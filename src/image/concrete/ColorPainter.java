@@ -7,8 +7,8 @@ import image.abstracts.Painter;
 
 public class ColorPainter extends Painter {
 
-	public ColorPainter(Size size) {
-		super(size);
+	public ColorPainter(Size imageSize) {
+		super(imageSize);
 	}
 
 	@Override
