@@ -42,7 +42,6 @@ public class Rectangle {
 	}
 	
 	public static Rectangle getRectangle(String rectangleCoordinates) {
-		// expected format is ­2.0:2.0:­2.0:2.0
 		if (rectangleCoordinates == null) {
 			return new Rectangle(Rectangle.DEFAULT_A, Rectangle.DEFAULT_B);
 		}

@@ -7,7 +7,7 @@ import math.abstracts.Formula;
 public class Formula16 implements Formula {
 	
 	@SuppressWarnings("unused")
-	private static String notatation = "Z^2 + C ∗ е^(−Z)";
+	private static String notatation = "Z^2 + C * e^(-Z)";
 
 	@Override
 	public Complex compute(Complex z, Complex c) {
