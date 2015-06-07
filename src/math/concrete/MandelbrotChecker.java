@@ -5,9 +5,6 @@ import math.abstracts.Formula;
 import org.apache.commons.math3.complex.Complex;
 
 public class MandelbrotChecker {
-
-	// TODO: check if this is a constant value or depends on width/height
-	private static final int NUMBER_OF_STEPS = 640;
 	
 	private Formula formula;
 	
@@ -27,12 +24,12 @@ public class MandelbrotChecker {
 		return formula.compute(previous, current);
 	}
 	
-	public int getStepsToInfinity(Complex number){
+	public int getStepsToInfinity(Complex number, int imageWidth){
 		Complex zero = new Complex(0.0, 0.0);
 		Complex previous = zero;
 		Complex current = null;
 		
-		for (int stepsToInfinity = 1; stepsToInfinity <= MandelbrotChecker.NUMBER_OF_STEPS; stepsToInfinity++) {
+		for (int stepsToInfinity = 1; stepsToInfinity <= imageWidth; stepsToInfinity++) {
 			current = getNextMandelbrotNumber(previous, number);
 			if (current.isInfinite() || current.isNaN()) {
 				return stepsToInfinity;

@@ -25,23 +25,17 @@ public class Generator {
 
 			double heightStep = 1 / (double) imageSize.getHeight();
 
-			//logger.log("width step: " + widthStep);
-
 			for (int imageY = 0; imageY < imageSize.getHeight(); imageY++) {
 				double fieldY = complexField.getB().max
 						- (complexField.getB().max - complexField.getB().min)
 						* heightStep;
 
-				//logger.log("height step: " + heightStep);
-
 				int stepsToInfinity = checker.getStepsToInfinity(new Complex(
-						fieldX, fieldY));
+						fieldX, fieldY), imageSize.getWidth());
 
 				logger.log(String.format("(%.9f, %.9f) to (%3d, %3d) => %d\n",
 						fieldX, fieldY, imageX, imageY, stepsToInfinity));
 				
-				//logger.log(Integer.toString(stepsToInfinity));
-
 				painter.paintPixel(stepsToInfinity, painter.getImage(), imageX,
 						imageY);
 

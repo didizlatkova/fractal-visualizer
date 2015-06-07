@@ -30,11 +30,11 @@ public class Main {
 			return;
 		}
 		
-		Painter painter = new BlackAndWhitePainter(params.getSize());
-		//Painter painter = new ColorPainter(params.getSize());
+		//Painter painter = new BlackAndWhitePainter(params.getSize());
+		Painter painter = new ColorPainter(params.getSize());
 		Logger logger = new MessageLogger(!params.getWorkingMode().isQuiet());
 		Generator fractalGenerator = new Generator(logger);
-		MandelbrotChecker checker = new MandelbrotChecker(new FormulaExample());
+		MandelbrotChecker checker = new MandelbrotChecker(new Formula16());
 		
 		fractalGenerator.generateFractal(painter, checker, params.getSize(), params.getComplexField());
 		painter.paintBorder(params.getSize(), 2, 2);
