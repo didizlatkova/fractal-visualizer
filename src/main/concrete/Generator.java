@@ -18,7 +18,7 @@ public class Generator {
 		int startColumn = 0;
 		Thread threadArray[] = new Thread[maxThreads];
 
-		for (int i = 0; i < maxThreads; i++) {
+		for (int i = 0; i < maxThreads; i++) {			
 			FractalRunnable runnable = new FractalRunnable(painter, checker,
 					imageSize, complexField, startColumn,
 					(i != maxThreads - 1) ? startColumn + workAmount

@@ -19,8 +19,8 @@ public class FractalRunnable implements Runnable {
 	private Logger logger;
 
 	public FractalRunnable(Painter painter, MandelbrotChecker checker,
-			Size imageSize, Rectangle complexField, int startColumn, int endColumn,
-			Logger logger) {
+			Size imageSize, Rectangle complexField, int startColumn,
+			int endColumn, Logger logger) {
 		this.painter = painter;
 		this.checker = checker;
 		this.imageSize = imageSize;
@@ -32,7 +32,7 @@ public class FractalRunnable implements Runnable {
 
 	@Override
 	public void run() {
-		double widthStep = 1 / (double) imageSize.getWidth();
+		double widthStep = (1 / (double) imageSize.getWidth()) * (startColumn + 1);
 
 		for (int imageX = startColumn; imageX < endColumn; imageX++) {
 			double fieldX = complexField.getA().min
@@ -52,8 +52,7 @@ public class FractalRunnable implements Runnable {
 				logger.log(String.format("(%.9f, %.9f) to (%3d, %3d) => %d\n",
 						fieldX, fieldY, imageX, imageY, stepsToInfinity));
 
-				painter.paintPixel(stepsToInfinity, painter.getImage(), imageX,
-						imageY);
+				painter.paintPixel(stepsToInfinity, imageX, imageY);
 
 				heightStep += 1 / (double) imageSize.getHeight();
 			}

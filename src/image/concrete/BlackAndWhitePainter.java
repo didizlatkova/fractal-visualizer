@@ -1,7 +1,5 @@
 package image.concrete;
 
-import java.awt.image.BufferedImage;
-
 import parameters.concrete.Size;
 import image.abstracts.Painter;
 
@@ -12,7 +10,7 @@ public class BlackAndWhitePainter extends Painter {
 	}
 
 	@Override
-	public void paintPixel(int stepsToInfinity, BufferedImage image, int x,
+	public void paintPixel(int stepsToInfinity, int x,
 			int y) {
 		int color = 0;
 		
@@ -24,7 +22,7 @@ public class BlackAndWhitePainter extends Painter {
 			color = 0xffffff;
 		}
 
-		image.setRGB(x, y, color);
+		this.getImage().setRGB(x, y, color);
 	}
 
 }
