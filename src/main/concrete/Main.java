@@ -36,7 +36,7 @@ public class Main {
 		Generator fractalGenerator = new Generator(logger);
 		MandelbrotChecker checker = new MandelbrotChecker(new Formula16());
 		
-		fractalGenerator.generateFractal(painter, checker, params.getSize(), params.getComplexField());
+		fractalGenerator.generateFractal(painter, checker, params.getSize(), params.getComplexField(), params.getTasks().getMax());
 		painter.paintBorder(params.getSize(), 2, 2);
 		
 		painter.paintImage(params.getGeneratedImage().getName(), "PNG");

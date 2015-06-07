@@ -1,7 +1,5 @@
 package main.concrete;
 
-import org.apache.commons.math3.complex.Complex;
-
 import logging.abstracts.Logger;
 import math.concrete.MandelbrotChecker;
 import parameters.concrete.*;
@@ -14,36 +12,31 @@ public class Generator {
 		this.logger = logger;
 	}
 
-	public void generateFractal(Painter painter, MandelbrotChecker checker, Size imageSize,
-			Rectangle complexField) {
-		double widthStep = 1 / (double) imageSize.getWidth();
+	public void generateFractal(Painter painter, MandelbrotChecker checker,
+			Size imageSize, Rectangle complexField, int maxThreads) {
+		int workAmount = imageSize.getWidth() / maxThreads;
+		int startColumn = 0;
+		Thread threadArray[] = new Thread[maxThreads];
 
-		for (int imageX = 0; imageX < imageSize.getWidth(); imageX++) {
-			double fieldX = complexField.getA().min
-					+ (complexField.getA().max - complexField.getA().min)
-					* widthStep;
+		for (int i = 0; i < maxThreads; i++) {
+			FractalRunnable runnable = new FractalRunnable(painter, checker,
+					imageSize, complexField, startColumn,
+					(i != maxThreads - 1) ? startColumn + workAmount
+							: imageSize.getWidth(), logger);
+			Thread t = new Thread(runnable);
+			threadArray[i] = t;
+			t.start();
 
-			double heightStep = 1 / (double) imageSize.getHeight();
-
-			for (int imageY = 0; imageY < imageSize.getHeight(); imageY++) {
-				double fieldY = complexField.getB().max
-						- (complexField.getB().max - complexField.getB().min)
-						* heightStep;
-
-				int stepsToInfinity = checker.getStepsToInfinity(new Complex(
-						fieldX, fieldY), imageSize.getWidth());
-
-				logger.log(String.format("(%.9f, %.9f) to (%3d, %3d) => %d\n",
-						fieldX, fieldY, imageX, imageY, stepsToInfinity));
-				
-				painter.paintPixel(stepsToInfinity, painter.getImage(), imageX,
-						imageY);
-
-				heightStep += 1 / (double) imageSize.getHeight();
-			}
-
-			widthStep += 1 / (double) imageSize.getWidth();
+			startColumn += workAmount;
 		}
-	}
 
+		for (int i = 0; i < threadArray.length; i++) {
+			try {
+				threadArray[i].join();
+			} catch (InterruptedException e) {
+				logger.logAlways(e.getMessage());
+			}
+		}
+
+	}
 }
