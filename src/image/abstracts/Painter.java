@@ -1,12 +1,15 @@
 package image.abstracts;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import parameters.concrete.Size;
 
@@ -15,6 +18,8 @@ public abstract class Painter {
 	private BufferedImage image;
 
 	private Graphics2D graphics;
+
+	protected Graphics frameGraphics;
 
 	public BufferedImage getImage() {
 		return image;
@@ -33,6 +38,16 @@ public abstract class Painter {
 		this.graphics.setColor(Color.WHITE);
 		this.graphics.fillRect(0, 0, imageSize.getWidth(),
 				imageSize.getHeight());
+
+		JFrame application = new JFrame();
+		final JPanel panel = new JPanel();
+		panel.setSize(imageSize.getWidth(), imageSize.getHeight());
+		application.setSize(panel.getSize());
+		application.setResizable(false);
+		application.add(panel);
+		application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		application.setVisible(true);
+		this.frameGraphics = panel.getGraphics();
 	}
 
 	public void paintBorder(Size imageSize, int borderWidth, int borderHeight) {

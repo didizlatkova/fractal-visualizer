@@ -1,5 +1,7 @@
 package image.concrete;
 
+import java.awt.Color;
+
 import parameters.concrete.Size;
 import image.abstracts.Painter;
 
@@ -10,7 +12,7 @@ public class BlackAndWhitePainter extends Painter {
 	}
 
 	@Override
-	public void paintPixel(int stepsToInfinity, int x,
+	public synchronized void paintPixel(int stepsToInfinity, int x,
 			int y) {
 		int color = 0;
 		
@@ -23,6 +25,9 @@ public class BlackAndWhitePainter extends Painter {
 		}
 
 		this.getImage().setRGB(x, y, color);
+		
+		this.frameGraphics.setColor(new Color(color));
+		this.frameGraphics.drawLine(x, y, x, y);
 	}
 
 }

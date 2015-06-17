@@ -14,32 +14,34 @@ import parser.concrete.Parser;
 public class Main {
 
 	public static void main(String[] args) throws ParseException {
-		
+
 		CommandLineParser commandLineParser = new DefaultParser();
 		Parser parser = new Parser();
-		
+
 		parser.buildParameterOptions();
 		Options options = parser.getOptions();
-		CommandLine commandLine = commandLineParser.parse(options, args);		
+		CommandLine commandLine = commandLineParser.parse(options, args);
 		Parameters params = new Parameters(commandLine);
-		
+
 		try {
-			params.create();			
+			params.create();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return;
 		}
-		
+
 		Painter painter = new BlackAndWhitePainter(params.getSize());
-		//Painter painter = new ColorPainter(params.getSize());
+		// Painter painter = new ColorPainter(params.getSize());
+
 		Logger logger = new MessageLogger(!params.getWorkingMode().isQuiet());
 		Generator fractalGenerator = new Generator(logger);
 		MandelbrotChecker checker = new MandelbrotChecker(new FormulaExample());
 		long startTime = System.currentTimeMillis();
-		fractalGenerator.generateFractal(painter, checker, params.getSize(), params.getComplexField(), params.getTasks().getMax());
+		fractalGenerator.generateFractal(painter, checker, params.getSize(),
+				params.getComplexField(), params.getTasks().getMax());
 		long estimatedTime = System.currentTimeMillis() - startTime;
 		painter.paintBorder(params.getSize(), 2, 2);
-		
+
 		painter.paintImage(params.getGeneratedImage().getName(), "PNG");
 		logger.logAlways("Image painted!");
 		logger.logAlways("Estimated time: " + estimatedTime);
