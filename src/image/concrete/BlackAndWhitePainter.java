@@ -12,22 +12,13 @@ public class BlackAndWhitePainter extends Painter {
 	}
 
 	@Override
-	public synchronized void paintPixel(int stepsToInfinity, int x,
-			int y) {
-		int color = 0;
-		
+	public synchronized void paintPixel(int stepsToInfinity, int x, int y) {
 		if (stepsToInfinity == 0) {
 			// black
-			color = 0x000000;
-		} else {
-			// white
-			color = 0xffffff;
+			this.getImage().setRGB(x, y, 0x000000);
+			this.frameGraphics.setColor(Color.black);
+			this.frameGraphics.drawLine(x, y, x, y);
 		}
-
-		this.getImage().setRGB(x, y, color);
-		
-		this.frameGraphics.setColor(new Color(color));
-		this.frameGraphics.drawLine(x, y, x, y);
 	}
 
 }

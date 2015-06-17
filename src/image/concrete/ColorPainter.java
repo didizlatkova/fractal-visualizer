@@ -1,5 +1,7 @@
 package image.concrete;
 
+import java.awt.Color;
+
 import parameters.concrete.Size;
 import image.abstracts.Painter;
 
@@ -10,8 +12,12 @@ public class ColorPainter extends Painter {
 	}
 
 	@Override
-	public void paintPixel(int stepsToInfinity, int x, int y) {
+	public synchronized void paintPixel(int stepsToInfinity, int x, int y) {
 		int color = 0;
+		
+		if (stepsToInfinity > 300) {
+			return;
+		}
 
 		if (stepsToInfinity == 0) {
 			color = 0x00ff00;
@@ -47,17 +53,17 @@ public class ColorPainter extends Painter {
 			color = 0x999900;
 		} else if (100 < stepsToInfinity && stepsToInfinity <= 150) {
 			color = 0xaaaa00;
-		} else if (150 < stepsToInfinity && stepsToInfinity <= 150) {
+		} else if (150 < stepsToInfinity && stepsToInfinity <= 200) {
 			color = 0xbbbb00;
-		} else if (200 < stepsToInfinity && stepsToInfinity <= 150) {
+		} else if (200 < stepsToInfinity && stepsToInfinity <= 250) {
 			color = 0xcccc00;
-		} else if (350 < stepsToInfinity && stepsToInfinity <= 300) {
+		} else if (250 < stepsToInfinity && stepsToInfinity <= 300) {
 			color = 0xdddd00;
-		} else {
-			color = 0xeeee00;
 		}
 
 		this.getImage().setRGB(x, y, color);
+		this.frameGraphics.setColor(new Color(color));
+		this.frameGraphics.drawLine(x, y, x, y);
 	}
 
 }

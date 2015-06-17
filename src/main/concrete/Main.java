@@ -30,8 +30,8 @@ public class Main {
 			return;
 		}
 
-		Painter painter = new BlackAndWhitePainter(params.getSize());
-		// Painter painter = new ColorPainter(params.getSize());
+		// Painter painter = new BlackAndWhitePainter(params.getSize());
+		Painter painter = new ColorPainter(params.getSize());
 
 		Logger logger = new MessageLogger(!params.getWorkingMode().isQuiet());
 		Generator fractalGenerator = new Generator(logger);

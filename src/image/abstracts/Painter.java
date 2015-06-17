@@ -38,10 +38,15 @@ public abstract class Painter {
 		this.graphics.setColor(Color.WHITE);
 		this.graphics.fillRect(0, 0, imageSize.getWidth(),
 				imageSize.getHeight());
+		
+		this.setupPanel(imageSize);
+	}
 
+	private void setupPanel(Size imageSize) {
 		JFrame application = new JFrame();
 		final JPanel panel = new JPanel();
 		panel.setSize(imageSize.getWidth(), imageSize.getHeight());
+		panel.setBackground(Color.white);
 		application.setSize(panel.getSize());
 		application.setResizable(false);
 		application.add(panel);
