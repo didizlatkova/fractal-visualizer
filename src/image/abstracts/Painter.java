@@ -19,7 +19,15 @@ public abstract class Painter {
 
 	private Graphics2D graphics;
 
-	protected Graphics frameGraphics;
+	private Graphics frameGraphics;
+
+	public Graphics getFrameGraphics() {
+		return frameGraphics;
+	}
+
+	public void setFrameGraphics(Graphics frameGraphics) {
+		this.frameGraphics = frameGraphics;
+	}
 
 	public BufferedImage getImage() {
 		return image;
@@ -38,7 +46,7 @@ public abstract class Painter {
 		this.graphics.setColor(Color.WHITE);
 		this.graphics.fillRect(0, 0, imageSize.getWidth(),
 				imageSize.getHeight());
-		
+
 		this.setupPanel(imageSize);
 	}
 
@@ -52,7 +60,7 @@ public abstract class Painter {
 		application.add(panel);
 		application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		application.setVisible(true);
-		this.frameGraphics = panel.getGraphics();
+		this.setFrameGraphics(panel.getGraphics());
 	}
 
 	public void paintBorder(Size imageSize, int borderWidth, int borderHeight) {
