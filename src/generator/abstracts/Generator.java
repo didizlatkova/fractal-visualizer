@@ -1,19 +1,14 @@
 package generator.abstracts;
 
 import image.abstracts.Painter;
-import logging.abstracts.Logger;
+import logging.concrete.MessageLogger;
 import math.concrete.MandelbrotChecker;
 import parameters.concrete.Rectangle;
 import parameters.concrete.Size;
 
 public abstract class Generator {
 
-	protected Logger logger;
 	protected Thread[] threadArray;
-
-	public Generator(Logger logger) {
-		this.logger = logger;
-	}
 
 	public void generateFractal(Painter painter, MandelbrotChecker checker,
 			Size imageSize, Rectangle complexField, int maxThreads) {
@@ -21,7 +16,7 @@ public abstract class Generator {
 			try {
 				threadArray[i].join();
 			} catch (InterruptedException e) {
-				logger.logAlways(e.getMessage());
+				MessageLogger.getInstance().logAlways(e.getMessage());
 			}
 		}
 	}

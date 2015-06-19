@@ -1,6 +1,5 @@
 package generator.concrete;
 
-import logging.abstracts.Logger;
 import math.concrete.MandelbrotChecker;
 import parameters.concrete.*;
 import generator.abstracts.FractalRunnable;
@@ -8,10 +7,6 @@ import generator.abstracts.Generator;
 import image.abstracts.Painter;
 
 public class RowsGenerator extends Generator {
-
-	public RowsGenerator(Logger logger) {
-		super(logger);
-	}
 
 	public void generateFractal(Painter painter, MandelbrotChecker checker,
 			Size imageSize, Rectangle complexField, int maxThreads) {
@@ -23,7 +18,7 @@ public class RowsGenerator extends Generator {
 			FractalRunnable runnable = new RowsFractalRunnable(painter,
 					checker, imageSize, complexField, startRow,
 					(i != maxThreads - 1) ? startRow + workAmount
-							: imageSize.getHeight(), logger);
+							: imageSize.getHeight());
 			Thread t = new Thread(runnable);
 			threadArray[i] = t;
 			t.start();

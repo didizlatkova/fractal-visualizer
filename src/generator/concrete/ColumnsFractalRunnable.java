@@ -4,7 +4,7 @@ import org.apache.commons.math3.complex.Complex;
 
 import generator.abstracts.FractalRunnable;
 import image.abstracts.Painter;
-import logging.abstracts.Logger;
+import logging.concrete.MessageLogger;
 import math.concrete.MandelbrotChecker;
 import parameters.concrete.Rectangle;
 import parameters.concrete.Size;
@@ -16,8 +16,8 @@ public class ColumnsFractalRunnable extends FractalRunnable {
 
 	public ColumnsFractalRunnable(Painter painter, MandelbrotChecker checker,
 			Size imageSize, Rectangle complexField, int startColumn,
-			int endColumn, Logger logger) {
-		super(painter, checker, imageSize, complexField, logger);
+			int endColumn) {
+		super(painter, checker, imageSize, complexField);
 		this.startColumn = startColumn;
 		this.endColumn = endColumn;
 	}
@@ -42,7 +42,7 @@ public class ColumnsFractalRunnable extends FractalRunnable {
 				int stepsToInfinity = checker.getStepsToInfinity(new Complex(
 						fieldX, fieldY), imageSize.getWidth());
 
-				logger.log(String.format("(%.9f, %.9f) to (%3d, %3d) => %d\n",
+				MessageLogger.getInstance().log(String.format("(%.9f, %.9f) to (%3d, %3d) => %d\n",
 						fieldX, fieldY, imageX, imageY, stepsToInfinity));
 
 				painter.paintPixel(stepsToInfinity, imageX, imageY);

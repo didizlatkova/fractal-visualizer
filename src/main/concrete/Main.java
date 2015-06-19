@@ -1,6 +1,5 @@
 package main.concrete;
 
-import logging.abstracts.Logger;
 import logging.concrete.MessageLogger;
 import math.concrete.*;
 import generator.abstracts.Generator;
@@ -39,9 +38,9 @@ public class Main {
 					.isVisual());
 		}
 
-		Logger logger = new MessageLogger(!params.getWorkingMode().isQuiet());
+		MessageLogger.setShouldLog(!params.getWorkingMode().isQuiet());
 		// Generator fractalGenerator = new RowsGenerator(logger);
-		Generator fractalGenerator = new ColumnsGenerator(logger);
+		Generator fractalGenerator = new ColumnsGenerator();
 		MandelbrotChecker checker = new MandelbrotChecker(new Formula16());
 		long startTime = System.currentTimeMillis();
 		fractalGenerator.generateFractal(painter, checker, params.getSize(),
@@ -50,8 +49,9 @@ public class Main {
 		painter.paintBorder(params.getSize(), 2, 2);
 
 		painter.paintImage(params.getGeneratedImage().getName(), "PNG");
-		logger.logAlways("Image painted!");
-		logger.logAlways("Estimated time: " + estimatedTime);
+		MessageLogger.getInstance().logAlways("Image painted!");
+		MessageLogger.getInstance().logAlways(
+				"Estimated time: " + estimatedTime);
 	}
 
 }
