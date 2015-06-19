@@ -1,5 +1,7 @@
 package parser.concrete;
 
+import generator.abstracts.Generator;
+
 import org.apache.commons.cli.CommandLine;
 
 import parameters.concrete.*;
@@ -21,6 +23,8 @@ public class Parameters {
 	private Display display;
 
 	private GeneratedImage generatedImage;
+
+	private Generator generator;
 
 	public Size getSize() {
 		return size;
@@ -135,6 +139,22 @@ public class Parameters {
 		this.display = new Display(isVisual);
 	}
 
+	public Generator getGenerator() {
+		return generator;
+	}
+
+	private void setGenerator() {
+		String direction = null;
+		for (String optionName : Generation.parameterOptions.optionNames) {
+			if (this.commandLine.hasOption(optionName)) {
+				direction = this.commandLine.getOptionValue(optionName);
+				break;
+			}
+		}
+
+		this.generator = Generation.getGeneration(direction);
+	}
+
 	public Parameters(CommandLine commandLine) {
 		this.commandLine = commandLine;
 	}
@@ -147,6 +167,7 @@ public class Parameters {
 		this.setWorkingMode();
 		this.setBrush();
 		this.setDisplay();
+		this.setGenerator();
 	}
 
 }

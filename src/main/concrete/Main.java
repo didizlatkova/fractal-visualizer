@@ -3,7 +3,6 @@ package main.concrete;
 import logging.concrete.MessageLogger;
 import math.concrete.*;
 import generator.abstracts.Generator;
-import generator.concrete.*;
 import image.abstracts.Painter;
 import image.concrete.*;
 
@@ -39,8 +38,7 @@ public class Main {
 		}
 
 		MessageLogger.setShouldLog(!params.getWorkingMode().isQuiet());
-		// Generator fractalGenerator = new RowsGenerator(logger);
-		Generator fractalGenerator = new ColumnsGenerator();
+		Generator fractalGenerator = params.getGenerator();
 		MandelbrotChecker checker = new MandelbrotChecker(new Formula16());
 		long startTime = System.currentTimeMillis();
 		fractalGenerator.generateFractal(painter, checker, params.getSize(),

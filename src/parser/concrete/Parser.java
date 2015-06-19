@@ -24,6 +24,7 @@ public class Parser {
 		parameterOptions.add(WorkingMode.parameterOptions);
 		parameterOptions.add(Brush.parameterOptions);
 		parameterOptions.add(Display.parameterOptions);
+		parameterOptions.add(Generation.parameterOptions);
 	}
 
 	public Options getOptions() {
