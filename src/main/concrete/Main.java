@@ -33,11 +33,13 @@ public class Main {
 			return;
 		}
 
-		//Painter painter = new BlackAndWhitePainter(params.getSize());
-		Painter painter = new ColorPainter(params.getSize());
+		Painter painter = new BlackAndWhitePainter(params.getSize());
+		if (params.getBrush().isColor()) {
+			painter = new ColorPainter(params.getSize());
+		}
 
 		Logger logger = new MessageLogger(!params.getWorkingMode().isQuiet());
-		//Generator fractalGenerator = new RowsGenerator(logger);
+		// Generator fractalGenerator = new RowsGenerator(logger);
 		Generator fractalGenerator = new ColumnsGenerator(logger);
 		MandelbrotChecker checker = new MandelbrotChecker(new Formula16());
 		long startTime = System.currentTimeMillis();

@@ -5,17 +5,19 @@ import org.apache.commons.cli.CommandLine;
 import parameters.concrete.*;
 
 public class Parameters {
-	
+
 	private CommandLine commandLine;
 
 	private Size size;
-	
+
 	private Rectangle complexField;
-	
+
 	private Tasks tasks;
-	
+
 	private WorkingMode workingMode;
-	
+
+	private Brush brush;
+
 	private GeneratedImage generatedImage;
 
 	public Size getSize() {
@@ -30,7 +32,7 @@ public class Parameters {
 				break;
 			}
 		}
-		
+
 		this.size = Size.getSize(widthAndHeight);
 	}
 
@@ -42,11 +44,12 @@ public class Parameters {
 		String rectangleCoordinates = null;
 		for (String optionName : Rectangle.parameterOptions.optionNames) {
 			if (this.commandLine.hasOption(optionName)) {
-				rectangleCoordinates = this.commandLine.getOptionValue(optionName);
+				rectangleCoordinates = this.commandLine
+						.getOptionValue(optionName);
 				break;
 			}
 		}
-		
+
 		this.complexField = Rectangle.getRectangle(rectangleCoordinates);
 	}
 
@@ -62,7 +65,7 @@ public class Parameters {
 				break;
 			}
 		}
-		
+
 		this.tasks = Tasks.getTasks(maxString);
 	}
 
@@ -77,8 +80,8 @@ public class Parameters {
 				name = this.commandLine.getOptionValue(optionName);
 				break;
 			}
-		}		
-		
+		}
+
 		this.generatedImage = GeneratedImage.getGeneratedImage(name);
 	}
 
@@ -93,9 +96,25 @@ public class Parameters {
 				isQuiet = true;
 				break;
 			}
-		}	
-		
+		}
+
 		this.workingMode = new WorkingMode(isQuiet);
+	}
+
+	public Brush getBrush() {
+		return brush;
+	}
+
+	private void setBrush() {
+		boolean isColor = false;
+		for (String optionName : Brush.parameterOptions.optionNames) {
+			if (this.commandLine.hasOption(optionName)) {
+				isColor = true;
+				break;
+			}
+		}
+
+		this.brush = new Brush(isColor);
 	}
 
 	public Parameters(CommandLine commandLine) {
@@ -108,6 +127,7 @@ public class Parameters {
 		this.setTasks();
 		this.setGeneratedImage();
 		this.setWorkingMode();
+		this.setBrush();
 	}
-	
+
 }

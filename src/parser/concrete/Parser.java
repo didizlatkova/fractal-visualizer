@@ -9,7 +9,7 @@ import parameters.concrete.*;
 import org.apache.commons.cli.Options;
 
 public class Parser {
-	
+
 	private List<ParameterOption> parameterOptions;
 
 	public Parser() {
@@ -22,6 +22,7 @@ public class Parser {
 		parameterOptions.add(Tasks.parameterOptions);
 		parameterOptions.add(GeneratedImage.parameterOptions);
 		parameterOptions.add(WorkingMode.parameterOptions);
+		parameterOptions.add(Brush.parameterOptions);
 	}
 
 	public Options getOptions() {
@@ -36,5 +37,5 @@ public class Parser {
 
 		return options;
 	}
-	
+
 }
