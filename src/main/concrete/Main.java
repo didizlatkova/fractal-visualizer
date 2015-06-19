@@ -4,8 +4,7 @@ import logging.abstracts.Logger;
 import logging.concrete.MessageLogger;
 import math.concrete.*;
 import generator.abstracts.Generator;
-import generator.concrete.ColumnsGenerator;
-import generator.concrete.RowsGenerator;
+import generator.concrete.*;
 import image.abstracts.Painter;
 import image.concrete.*;
 
@@ -33,9 +32,11 @@ public class Main {
 			return;
 		}
 
-		Painter painter = new BlackAndWhitePainter(params.getSize());
+		Painter painter = new BlackAndWhitePainter(params.getSize(), params
+				.getDisplay().isVisual());
 		if (params.getBrush().isColor()) {
-			painter = new ColorPainter(params.getSize());
+			painter = new ColorPainter(params.getSize(), params.getDisplay()
+					.isVisual());
 		}
 
 		Logger logger = new MessageLogger(!params.getWorkingMode().isQuiet());

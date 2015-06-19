@@ -18,6 +18,8 @@ public class Parameters {
 
 	private Brush brush;
 
+	private Display display;
+
 	private GeneratedImage generatedImage;
 
 	public Size getSize() {
@@ -117,6 +119,22 @@ public class Parameters {
 		this.brush = new Brush(isColor);
 	}
 
+	public Display getDisplay() {
+		return display;
+	}
+
+	private void setDisplay() {
+		boolean isVisual = false;
+		for (String optionName : Display.parameterOptions.optionNames) {
+			if (this.commandLine.hasOption(optionName)) {
+				isVisual = true;
+				break;
+			}
+		}
+
+		this.display = new Display(isVisual);
+	}
+
 	public Parameters(CommandLine commandLine) {
 		this.commandLine = commandLine;
 	}
@@ -128,6 +146,7 @@ public class Parameters {
 		this.setGeneratedImage();
 		this.setWorkingMode();
 		this.setBrush();
+		this.setDisplay();
 	}
 
 }

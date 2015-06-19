@@ -23,6 +23,7 @@ public class Parser {
 		parameterOptions.add(GeneratedImage.parameterOptions);
 		parameterOptions.add(WorkingMode.parameterOptions);
 		parameterOptions.add(Brush.parameterOptions);
+		parameterOptions.add(Display.parameterOptions);
 	}
 
 	public Options getOptions() {

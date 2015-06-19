@@ -21,6 +21,8 @@ public abstract class Painter {
 
 	private Graphics frameGraphics;
 
+	protected boolean isVisual;
+
 	public Graphics getFrameGraphics() {
 		return frameGraphics;
 	}
@@ -39,7 +41,7 @@ public abstract class Painter {
 
 	public abstract void paintPixel(int stepsToInfinity, int x, int y);
 
-	public Painter(Size imageSize) {
+	public Painter(Size imageSize, boolean isVisual) {
 		this.setImage(new BufferedImage(imageSize.getWidth(), imageSize
 				.getHeight(), BufferedImage.TYPE_3BYTE_BGR));
 		this.graphics = this.getImage().createGraphics();
@@ -47,7 +49,10 @@ public abstract class Painter {
 		this.graphics.fillRect(0, 0, imageSize.getWidth(),
 				imageSize.getHeight());
 
-		this.setupPanel(imageSize);
+		this.isVisual = isVisual;
+		if (isVisual) {
+			this.setupPanel(imageSize);
+		}
 	}
 
 	private void setupPanel(Size imageSize) {

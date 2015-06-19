@@ -7,8 +7,8 @@ import image.abstracts.Painter;
 
 public class ColorPainter extends Painter {
 
-	public ColorPainter(Size imageSize) {
-		super(imageSize);
+	public ColorPainter(Size imageSize, boolean isVisual) {
+		super(imageSize, isVisual);
 	}
 
 	@Override
@@ -62,7 +62,10 @@ public class ColorPainter extends Painter {
 		}
 
 		this.getImage().setRGB(x, y, color.getRGB());
-		this.getFrameGraphics().setColor(color);
-		this.getFrameGraphics().drawLine(x, y, x, y);
+		if (isVisual) {
+			this.getFrameGraphics().setColor(color);
+			this.getFrameGraphics().drawLine(x, y, x, y);
+		}
 	}
+	
 }
