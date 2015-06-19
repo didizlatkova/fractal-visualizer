@@ -30,11 +30,13 @@ public class Main {
 			return;
 		}
 
-		Painter painter = new BlackAndWhitePainter(params.getSize(), params
-				.getDisplay().isVisual());
+		Painter painter = null;
 		if (params.getBrush().isColor()) {
 			painter = new ColorPainter(params.getSize(), params.getDisplay()
 					.isVisual());
+		} else {
+			painter = new BlackAndWhitePainter(params.getSize(), params
+					.getDisplay().isVisual());
 		}
 
 		MessageLogger.setShouldLog(!params.getWorkingMode().isQuiet());
