@@ -14,7 +14,7 @@ import parser.concrete.Parser;
 public class Main {
 
 	public static void main(String[] args) throws ParseException {
-
+		long startTime = System.currentTimeMillis();
 		CommandLineParser commandLineParser = new DefaultParser();
 		Parser parser = new Parser();
 
@@ -42,16 +42,17 @@ public class Main {
 		MessageLogger.setShouldLog(!params.getWorkingMode().isQuiet());
 		Generator fractalGenerator = params.getGenerator();
 		MandelbrotChecker checker = new MandelbrotChecker(new Formula16());
-		long startTime = System.currentTimeMillis();
+
 		fractalGenerator.generateFractal(painter, checker, params.getSize(),
 				params.getComplexField(), params.getTasks().getMax());
-		long estimatedTime = System.currentTimeMillis() - startTime;
 		painter.paintBorder(params.getSize(), 2, 2);
 
 		painter.paintImage(params.getGeneratedImage().getName(), "PNG");
 		MessageLogger.getInstance().logAlways("Image painted!");
+		long estimatedTime = System.currentTimeMillis() - startTime;
 		MessageLogger.getInstance().logAlways(
 				"Estimated time: " + estimatedTime);
+
 	}
 
 }
